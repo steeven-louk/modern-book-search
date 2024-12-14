@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 // import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Footer from "./components/footer";
+import Navbar from "./components/navbar";
 
 
 export const metadata: Metadata = {
@@ -17,6 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="font-roboto text-gray-900 bg-gray-50">
+      <Navbar />
         {children}
         <Footer/>
       </body>
