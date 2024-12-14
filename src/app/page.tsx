@@ -105,6 +105,48 @@ export default function Home() {
           <p className="text-center mt-12 text-xl font-semibold text-gray-700">Plus de 50 000 recherches effectuées chaque mois</p>
         </div>
       </section>
+
+      {/* About Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-6 text-gray-900">À Propos</h2>
+          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+            Notre mission est de connecter les lecteurs avec les livres qu&apos;ils aiment. 
+            Nous croyons que chaque livre a le pouvoir de transformer des vies.
+          </p>
+          <Link href="/about" className="bg-orange-400 hover:bg-orange-500 text-white font-bold py-3 px-6 rounded-full transition duration-300">
+            En savoir plus
+          </Link>
+        </div>
+      </section>
+
+      {/* Download or Buy Section */}
+      <section className="py-20 bg-gray-100">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row items-center">
+            <div className="md:w-1/2 mb-10 md:mb-0">
+              <h2 className="text-3xl font-bold mb-6 text-gray-900">Téléchargez ou Achetez vos livres</h2>
+              <p className="text-xl mb-8 text-gray-600">
+                Accédez à vos livres préférés en un clic, que ce soit en PDF ou via nos partenaires de vente en ligne. 
+                Lisez où vous voulez, quand vous voulez, sur n&apos;importe quel appareil.
+              </p>
+              <Link href="/search" className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full transition duration-300">
+                Découvrir les livres
+              </Link>
+            </div>
+            <div className="md:w-1/2">
+              <Image
+                src="/placeholder.svg?height=400&width=600"
+                alt="Personne utilisant un appareil pour accéder aux livres"
+                width={600}
+                height={400}
+                className="rounded-lg shadow-lg"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 }
