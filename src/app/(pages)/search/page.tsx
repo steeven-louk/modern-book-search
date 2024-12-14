@@ -7,13 +7,14 @@ import BookGallery from '@/app/components/bookGallery'
 
 export default function SearchPage() {
 
-    const [searchResults, setSearchResults] = useState([]); // Pour stocker les résultats des livres
-    const [bookCount, setBookCount] = useState(0); // Pour stocker le nombre total de livres trouvés
+    const [searchResults, setSearchResults] = useState([]);
+    const [bookCount, setBookCount] = useState(0);
+    
     const URL: string = "https://www.googleapis.com/books/v1/volumes?q=";
     
     const handleSearch = async (query: string) => {
       try {
-        const response = await fetch(URL + query); // Effectuer la requête
+        const response = await fetch(URL + query);
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -24,8 +25,8 @@ export default function SearchPage() {
         console.error("Erreur lors de la recherche:", error);
       }
     };
-  console.log("searchddddddddddd",bookCount)
-  return (
+
+    return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-8 text-center text-gray-900">Recherche de Livres</h1>
       <SearchBar onSearch={handleSearch} />
