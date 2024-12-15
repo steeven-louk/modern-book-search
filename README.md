@@ -1,36 +1,104 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Modern Book Search
 
-## Getting Started
+Modern Book Search est une application web permettant aux utilisateurs de rechercher, découvrir et gérer leurs livres préférés. Construite avec Next.js, Tailwind CSS, et l'API Google Books, cette application offre une expérience de recherche de livres rapide, intuitive et visuellement attrayante.
 
-First, run the development server:
+## Fonctionnalités
 
-```bash
+- 🔍 Recherche rapide et efficace de livres
+- 📚 Affichage détaillé des informations sur les livres
+- ⭐ Gestion des livres favoris
+- 📱 Design responsive pour une expérience optimale sur tous les appareils
+- 🎨 Interface utilisateur moderne et attrayante
+
+## Prérequis
+
+Avant de commencer, assurez-vous d'avoir installé :
+
+- Node.js (version 14.0.0 ou supérieure)
+- npm (généralement installé avec Node.js)
+
+## Installation
+
+1. Clonez le dépôt :
+   \`\`\`
+   https://github.com/steeven-louk/modern-book-search.git
+   \`\`\`
+
+2. Naviguez dans le dossier du projet :
+   \`\`\`
+   cd modern-book-search
+   \`\`\`
+
+3. Installez les dépendances :
+   \`\`\`
+   npm install
+   \`\`\`
+
+
+
+## Utilisation
+
+Pour lancer l'application en mode développement :
+
+\`\`\`
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+\`\`\`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ouvrez [http://localhost:3000](http://localhost:3000) dans votre navigateur pour voir l'application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Structure du Projet
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+\`\`\`
+modern-book-search/
+│
+├── app/
+│   ├── about/
+│   │   └── page.tsx
+│   ├── book/
+│   │   └── [id]/
+│   │       └── page.tsx
+│   ├── favorites/
+│   │   └── page.tsx
+│   ├── search/
+│   │   └── page.tsx
+│   ├── layout.tsx
+│   ├── page.tsx
+│   └── globals.css
+│
+├── components/
+│   ├── BookGallery.tsx
+│   ├── FeatureCard.tsx
+│   ├── Navbar.tsx
+│   ├── Pagination.tsx
+│   ├── SearchBar.tsx
+│   └── TestimonialCard.tsx
+│   └── scrollToTop.tsx
+│   └── heros.tsx
+│   └── footer.tsx
+│
+│
+├── README.md
+├── next.config.js
+├── package.json
+└── tailwind.config.js
+\`\`\`
 
-## Learn More
+## Contribution
 
-To learn more about Next.js, take a look at the following resources:
+Les contributions sont les bienvenues ! Pour contribuer :
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Forkez le projet
+2. Créez votre branche de fonctionnalité (\`git checkout -b feature/AmazingFeature\`)
+3. Committez vos changements (\`git commit -m 'Add some AmazingFeature'\`)
+4. Poussez vers la branche (\`git push origin feature/AmazingFeature\`)
+5. Ouvrez une Pull Request
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Licence
 
-## Deploy on Vercel
+Distribué sous la licence MIT. Voir \`LICENSE\` pour plus d'informations.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Contact
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+[@LinkedIn](https://www.linkedin.com/in/steeven-loukanou/) - linkedin.com/in/steeven-loukanou
+
+Lien du projet : https://github.com/steeven-louk/modern-book-search.git
