@@ -22,7 +22,7 @@ export default function Footer() {
               <a href="https://www.linkedin.com/in/steeven-loukanou" target="_blank" rel="noopener noreferrer">
                 <Linkedin size={30} className='text-blue-500'/>
               </a>
-              <a href="https://github.com/steeven-louk" target="_blank" rel="noopener noreferrer" >
+              <a href="https://github.com/steeven-louk/modern-book-search" target="_blank" rel="noopener noreferrer" >
                 <Github size={30} className='text-black'/>
               </a>
             </div>
