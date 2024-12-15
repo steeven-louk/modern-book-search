@@ -115,21 +115,52 @@ export default function BookPage({ params }: { params: Promise<{ id: string }> }
 
 
   // Parser la description en remplaçant les balises HTML par JSX
-  const parseDescription = (description: string) => {
-    const parts = description.split(/(<b>|<\/b>|<br>)/g) // Diviser selon les balises importantes
-    return parts.map((part, index) => {
-      if (part === '<b>') {
-        return <b key={index}> {/* Rendre le texte gras */}</b>
-      }
-      if (part === '<br>') {
-        return <br key={index} /> // Ajouter un saut de ligne
-      }
-      if (part === '</b>') {
-        return null // Ignorer la fermeture de la balise
-      }
-      return part // Garder le texte brut
-    })
-  }
+  // const parseDescription = (description: string) => {
+  //   const parts = description.split(/(<b>|<\/b>|<br>|<i>|<\/i>)/g) // Diviser selon les balises importantes
+  //   return parts.map((part, index) => {
+  //     if (part === '<b>') {
+  //       return <b key={index}> {/* Rendre le texte gras */}</b>
+  //     }
+  //     if (part === '<br>') {
+  //       return <br key={index} /> // Ajouter un saut de ligne
+  //     }
+  //     if (part === '<i>') {
+  //       return <i key={index}> {/* Rendre le text en italic*/}</i>
+  //     }
+  //     if (part === '</b>' || part === '</i>') {
+  //       return null // Ignorer la fermeture de la balise
+  //     }
+  //     return part // Garder le texte brut
+  //   })
+  // }
+  // Parser la description en remplaçant les balises HTML par JSX
+const parseDescription = (description: string) => {
+  const parts = description.split(/(<b>|<\/b>|<br>|<i>|<\/i>)/g) // Diviser selon les balises importantes
+
+  let isItalic = false; // Suivi de l'état d'italique pour gérer le texte dans <i>...< /i>
+
+  return parts.map((part, index) => {
+    if (part === '<b>') {
+      return <b key={index}> {/* Début du texte en gras */}</b>
+    }
+    if (part === '<br>') {
+      return <br key={index} /> // Ajouter un saut de ligne
+    }
+    if (part === '<i>') {
+      isItalic = true; // Commencer l'italique
+      return null; // Ignorer l'ouverture de la balise
+    }
+    if (part === '</i>') {
+      isItalic = false; // Terminer l'italique
+      return null; // Ignorer la fermeture de la balise
+    }
+    if (part === '</b>') {
+      return null; // Ignorer la fermeture de <b>
+    }
+    return isItalic ? <i key={index}>{part}</i> : part // Appliquer italique si nécessaire
+  })
+}
+
 
     // Générer les étoiles pleines avec une boucle
     const renderFullStars = (rating: number) => {
