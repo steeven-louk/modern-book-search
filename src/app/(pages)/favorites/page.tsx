@@ -3,13 +3,24 @@
 import BookGallery from '@/app/components/bookGallery'
 import { useState, useEffect } from 'react'
 
-type Book = {
-  id: string
-  title: string
-  author: string
-  coverImage: string
-  imageLinks:string
-}
+type ImageLinks = {
+    smallThumbnail?: string
+    thumbnail?: string
+  }
+  
+  type VolumeInfo = {
+    title: string
+    authors?: string[]
+    publishedDate?: string
+    publisher?: string
+    imageLinks?: ImageLinks
+  }
+  
+  type Book = {
+    title: string
+    id: string
+    volumeInfo: VolumeInfo
+  }
 
 // Fonction utilitaire pour récupérer les favoris depuis localStorage
 function fetchFavorites(): Book[] {
@@ -27,7 +38,7 @@ export default function Favorites() {
   }, []);
 
   const removeFavorite = (id: string) => {
-    const updatedFavorites = favorites.filter((book) => book.id !== id);
+    const updatedFavorites = favorites.filter((book) => book?.id !== id);
     setFavorites(updatedFavorites);
     localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
   }
@@ -41,7 +52,7 @@ export default function Favorites() {
           <div className="mt-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {favorites.map((book) => (
               <div key={book.id} className="flex flex-col items-center gap-4">
-                <h2 className="text-gray-800 font-semibold">{book.title}</h2>
+                <h2 className="text-gray-800 font-semibold">{book?.title}</h2>
                 <button
                   onClick={() => removeFavorite(book.id)}
                   className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded transition duration-300"
