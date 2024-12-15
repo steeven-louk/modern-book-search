@@ -93,7 +93,7 @@ export default function BookPage({ params }: { params: Promise<{ id: string }> }
   // Affichage conditionnel si le livre n'est pas encore chargé
   if (!book) {
     return <div className="text-center text-gray-500">
-      <Image src={'/assets/loading/loading-1.gif'} alt={'loading'} width={250} height={250} className='mx-auto object-cover' />
+      <Image src={'/assets/loading/loading-1.gif'} alt={'loading'} unoptimized width={250} height={250} className='mx-auto object-cover' />
       <p>Chargement des informations du livre...</p>
     </div>
   }
@@ -200,7 +200,7 @@ export default function BookPage({ params }: { params: Promise<{ id: string }> }
             </div>
           </div>
           <p className="text-gray-600 mb-6">Date de publication: {publishDate}</p>
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-4">
            {pdfLink &&
             <Link
               

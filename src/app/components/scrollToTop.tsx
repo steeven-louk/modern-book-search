@@ -31,7 +31,7 @@ export const ScrollToTop = () => {
             {showGoTop && (
         <button
           onClick={handleScrollUp}
-          className="fixed bottom-4 right-4 bg-blue-500 text-white rounded-full p-3 shadow-lg hover:bg-blue-600  transition duration-300"
+          className="fixed bottom-4 z-50 right-4 bg-blue-500 text-white rounded-full p-3 shadow-lg hover:bg-blue-600  transition duration-300"
           aria-label="Scroll to top"
         >
           <ArrowBigUpDashIcon className="text-white text-2xl w-8 h-8"/>

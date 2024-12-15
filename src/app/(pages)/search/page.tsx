@@ -4,6 +4,7 @@ import { useState } from 'react'
 import SearchBar from '@/app/components/searchBar'
 import BookGallery from '@/app/components/bookGallery'
 import Image from 'next/image';
+import { ScrollToTop } from '@/app/components/scrollToTop';
 
 
 export default function SearchPage() {
@@ -29,6 +30,7 @@ export default function SearchPage() {
 
     return (
     <div className="container mx-auto px-4 py-8">
+      <ScrollToTop/>
       <h1 className="text-3xl font-bold mb-8 text-center text-gray-900">Recherche de Livres</h1>
       <SearchBar onSearch={handleSearch} />
       {bookCount > 0 &&  <p className='my-4'>Environ <span className='text-blue-400 font-semibold'>{bookCount}</span> livres trouvés</p>}

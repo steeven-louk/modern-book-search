@@ -25,7 +25,7 @@ type BookGalleryProps = {
 
 export default function BookGallery({ books }: BookGalleryProps) {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 mt-8">
+    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-8 md:gap-6 mt-8">
       {books.map((book) => (
         <Link href={`/book/${book.id}`} key={book.id} className="group">
           <div className="bg-white h-full overflow-hidden rounded-lg shadow-md hover:shadow-gray-500 transition-transform duration-300 group-hover:scale-105">
