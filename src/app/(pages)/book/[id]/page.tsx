@@ -1,23 +1,29 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { Bookmark, BookOpenCheck, Download, ShoppingCart, Star } from 'lucide-react'
+import { Bookmark, BookmarkCheck, BookOpenCheck, Download, ShoppingCart, Star } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import React from 'react'
 import { useRouter } from 'next/navigation'
 
 
-
+type FavoriteBook = {
+  id: string;
+  [key: string]: any; // Si les objets ont d'autres propriétés, utilisez ceci.
+};
 
 export default function BookPage({ params }: { params: Promise<{ id: string }> }) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [book, setBook] = useState<any>(null) 
 
+  const [book, setBook] = useState<any>(null) 
+  const [favorites, setFavorites] = useState<FavoriteBook[]>([]);
+  const [isInFavorite, setIsInFavorite] = useState(false);
   const { id } = React.use(params) 
   const URL: string = `https://www.googleapis.com/books/v1/volumes/${id}`
 
   const navigation = useRouter()
+
   function goBack(){
     navigation.back();
   }
@@ -38,6 +44,45 @@ export default function BookPage({ params }: { params: Promise<{ id: string }> }
   }
     getBookById()
   }, [URL])
+
+    // Charger les favoris depuis le localStorage
+    useEffect(() => {
+      const storedFavorites = localStorage.getItem('favorites')
+      if (storedFavorites) {
+        setFavorites(JSON.parse(storedFavorites));
+
+        
+   
+      }
+    }, []);
+
+       // Vérifier si le livre est déjà dans les favoris
+    const isAlreadyFavorite = favorites.some((fav) => fav?.id === book.id)
+    if (isAlreadyFavorite) {
+      setIsInFavorite(true);
+      alert('Ce livre est déjà dans vos favoris !')
+      return
+    }
+      // Ajouter aux favoris
+  const addToFavorites = () => {
+
+  // Ajouter ou retirer des favoris
+    if (!book) return
+
+    let updatedFavorites = []
+    if (isInFavorite) {
+      updatedFavorites = favorites.filter((fav) => fav?.id !== book.id)
+      alert('Livre supprimé des favoris !')
+      setIsInFavorite(false)
+    } else {
+      updatedFavorites = [...favorites, book]
+      alert('Livre ajouté aux favoris !')
+    }
+    setFavorites(updatedFavorites)
+    setIsInFavorite(!isInFavorite)
+    localStorage.setItem('favorites', JSON.stringify(updatedFavorites))
+
+  }
 
   // Affichage conditionnel si le livre n'est pas encore chargé
   if (!book) {
@@ -87,6 +132,12 @@ export default function BookPage({ params }: { params: Promise<{ id: string }> }
       return stars
     }
 
+    // const handleAddFavorie =(...favorite: any)=>{
+
+    //   localStorage.setItem("favorie", JSON.stringify(favorite));
+    //   alert("bien ajouter en favorie");
+    // }
+
   return (
 
     <div className="container mx-auto px-4 py-8 min-h-screen">
@@ -120,10 +171,11 @@ export default function BookPage({ params }: { params: Promise<{ id: string }> }
 
           <button
               type='button'
-              className="flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300"
+              onClick={()=>addToFavorites()}
+              className={`flex items-center gap-2 ${isInFavorite === false? "bg-blue-500 hover:bg-blue-500":"bg-red-500 hover:bg-red-600"}  text-white font-bold py-2 px-4 rounded transition duration-300`}
             >
-              <Bookmark size={20} />
-              Ajouter en Favorie
+             {isInFavorite === false? <Bookmark size={20} /> : <BookmarkCheck size={20}/>} 
+             {isInFavorite === false? "Ajouter en Favorie" : "Supprimer des Favorie"} 
             </button>
 
         </div>

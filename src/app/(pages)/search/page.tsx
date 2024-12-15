@@ -9,10 +9,10 @@ export default function SearchPage() {
 
     const [searchResults, setSearchResults] = useState([]);
     const [bookCount, setBookCount] = useState(0);
-    
-    const URL: string = "https://www.googleapis.com/books/v1/volumes?q=";
+
     
     const handleSearch = async (query: string) => {
+      const URL: string = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}`;
       try {
         const response = await fetch(URL + query);
         if (!response.ok) {

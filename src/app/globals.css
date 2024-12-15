@@ -26,3 +26,16 @@ button, .button {
   font-family: 'Inter', sans-serif;
   font-weight: 600;
 }
+
+/* couleur surlignage texte*/
+/* pour Firefox */
+::-moz-selection {
+  background-color:#fb923c ;
+  color: #fff;
+ }
+
+ /* pour Safari et Chrome */
+ ::selection {
+  background-color:#fb923c ;
+  color: #fff;
+ }

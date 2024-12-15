@@ -1,39 +1,23 @@
+"use client"
+
 import Image from "next/image";
 import Link from "next/link";
 import { Search, BookOpen, Star } from 'lucide-react'
 import FeatureCard from "./components/featureCard";
 import TestimonialCard from "./components/testimonialCard";
+import { ScrollToTop } from "./components/scrollToTop";
+import { Heros } from "./components/heros";
 
 export default function Home() {
+
+
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 relative">
+     {/* scroll to top */}
+      <ScrollToTop/>
+
       {/* Hero section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center">
-            <div className="md:w-1/2 mb-10 md:mb-0">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 font-poppins">
-                Trouvez votre prochain livre préféré
-              </h1>
-              <p className="text-xl mb-8 text-gray-600 font-roboto">
-                Explorez des millions de livres, des best-sellers aux classiques, avec un moteur de recherche rapide et intuitif.
-              </p>
-              <Link href="/search" className="bg-orange-400 hover:bg-orange-500 text-white font-bold py-3 px-6 rounded-full transition duration-300 font-inter text-lg">
-                Commencer votre recherche
-              </Link>
-            </div>
-            <div className="md:w-1/2">
-            <Image
-                src="/placeholder.svg?height=400&width=600"
-                alt="Pile de livres modernes"
-                width={600}
-                height={400}
-                className="rounded-lg shadow-lg"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+      <Heros/>
 
       {/* Features section */}
       <section className="py-20 bg-gray-100">
@@ -73,11 +57,11 @@ export default function Home() {
             </div>
             <div className="md:w-1/2">
               <Image
-                src="/placeholder.svg?height=400&width=600"
+                src={"/assets/men.jpg"}
                 alt="Personne lisant un livre dans un cadre paisible"
                 width={600}
                 height={400}
-                className="rounded-lg shadow-lg"
+                className="rounded-lg shadow-lg object-cover"
               />
             </div>
           </div>
@@ -102,7 +86,7 @@ export default function Home() {
               author="Sophie M."
             />
           </div>
-          <p className="text-center mt-12 text-xl font-semibold text-gray-700">Plus de 50 000 recherches effectuées chaque mois</p>
+          <p className="text-center mt-12 text-xl font-semibold text-gray-700">Plus de <span className="text-green-500 font-bold">50 000</span> recherches effectuées chaque mois</p>
         </div>
       </section>
 
@@ -134,13 +118,13 @@ export default function Home() {
                 Découvrir les livres
               </Link>
             </div>
-            <div className="md:w-1/2">
+            <div className="md:w-1/2 md:pl-8">
               <Image
-                src="/placeholder.svg?height=400&width=600"
+                src={"/assets/lecture1.jpg"}
                 alt="Personne utilisant un appareil pour accéder aux livres"
                 width={600}
                 height={400}
-                className="rounded-lg shadow-lg"
+                className="rounded-lg shadow-lg object-cover"
               />
             </div>
           </div>
