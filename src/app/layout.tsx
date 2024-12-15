@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-// import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Footer from "./components/footer";
 import Navbar from "./components/navbar";
+import { ToastComponent } from "@/lib/toastContainer";
 
 
 export const metadata: Metadata = {
@@ -21,6 +21,7 @@ export default function RootLayout({
       <Navbar />
         {children}
         <Footer/>
+      <ToastComponent/>
       </body>
     </html>
   );

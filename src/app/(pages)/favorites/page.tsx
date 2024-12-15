@@ -2,6 +2,7 @@
 
 import BookGallery from '@/app/components/bookGallery'
 import { useState, useEffect } from 'react'
+import { toast } from 'react-toast'
 
 type ImageLinks = {
     smallThumbnail?: string
@@ -41,6 +42,7 @@ export default function Favorites() {
     const updatedFavorites = favorites.filter((book) => book?.id !== id);
     setFavorites(updatedFavorites);
     localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+    toast.warn("Livre supprimé des favoris !");
   }
 
   return (

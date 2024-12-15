@@ -7,11 +7,12 @@ import { Bookmark, BookmarkCheck, BookOpenCheck, Download, ShoppingCart, Star } 
 import { useState, useEffect } from 'react'
 import React from 'react'
 import { useRouter } from 'next/navigation'
+import { toast } from 'react-toast'
 
 
 type FavoriteBook = {
   id: string;
-  [key: string]: any; // Si les objets ont d'autres propriétés, utilisez ceci.
+  [key: string]: any;
 };
 
 export default function BookPage({ params }: { params: Promise<{ id: string }> }) {
@@ -37,8 +38,9 @@ export default function BookPage({ params }: { params: Promise<{ id: string }> }
           throw new Error(`HTTP error! Status: ${response.status}`)
         }
         const bookData = await response.json()
-        setBook(bookData) // Stocker les données du livre dans l'état
+        setBook(bookData)
       } catch (error) {
+        toast.error('Erreur lors de la récupération du livre');
         console.error('Erreur lors de la récupération du livre', error)
       }
   }
@@ -57,7 +59,7 @@ export default function BookPage({ params }: { params: Promise<{ id: string }> }
           setIsInFavorite(isAlreadyFavorite);
     
           if (isAlreadyFavorite) {
-            alert('Ce livre est déjà dans vos favoris.');
+            toast.info("Ce livre est déjà dans vos favoris.");
           }
         }
       }
@@ -70,15 +72,18 @@ export default function BookPage({ params }: { params: Promise<{ id: string }> }
   // Ajouter ou retirer des favoris
     if (!book) return
 
-    let updatedFavorites = []
+    let updatedFavorites = [];
+
     if (isInFavorite) {
-      updatedFavorites = favorites.filter((fav) => fav?.id !== book?.id)
-      alert('Livre supprimé des favoris !')
-      setIsInFavorite(false)
+      updatedFavorites = favorites.filter((fav) => fav?.id !== book?.id);
+      toast.warn("Livre supprimé des favoris !");
+      setIsInFavorite(false);
+
     } else {
-      updatedFavorites = [...favorites, book]
-      alert('Livre ajouté aux favoris !')
+      updatedFavorites = [...favorites, book];
+      toast.success("Livre ajouté aux favoris !");
     }
+
     setFavorites(updatedFavorites)
     setIsInFavorite(!isInFavorite)
     localStorage.setItem('favorites', JSON.stringify(updatedFavorites))
@@ -104,7 +109,6 @@ export default function BookPage({ params }: { params: Promise<{ id: string }> }
   const readLink = book.accessInfo?.webReaderLink || '#'
   const buyLink = book.saleInfo?.buyLink || '#'
   const published = book.volumeInfo?.publisher || "no publisher"
-  // const isPdf =book.accessInfo?.pdf.isAvailable
   const dimension = book.volumeInfo?.dimensions?.height || 'Dimension non spécifier'
   const pageCount = book.volumeInfo?.pageCount || 'Nombre de page non spécifier'
   const rating = Math.floor(book.volumeInfo?.averageRating || 0) // Note moyenne arrondie
@@ -135,7 +139,7 @@ export default function BookPage({ params }: { params: Promise<{ id: string }> }
       }
       return stars
     }
-console.log("rating", rating)
+
     
   return (
 
