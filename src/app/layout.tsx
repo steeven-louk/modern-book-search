@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="font-roboto text-gray-900 bg-gray-50">
+      <body className="font-roboto h-screen text-gray-900 bg-gray-50">
       <Navbar />
         {children}
         <Footer/>

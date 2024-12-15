@@ -64,7 +64,6 @@ export default function BookPage({ params }: { params: Promise<{ id: string }> }
     }, [book?.id]);
 
  
-    console.log("favoriteisss",isInFavorite)
       // Ajouter aux favoris
   const addToFavorites = () => {
 
@@ -136,7 +135,7 @@ export default function BookPage({ params }: { params: Promise<{ id: string }> }
       }
       return stars
     }
-
+console.log("rating", rating)
     
   return (
 
