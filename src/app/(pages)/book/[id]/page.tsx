@@ -47,22 +47,24 @@ export default function BookPage({ params }: { params: Promise<{ id: string }> }
 
     // Charger les favoris depuis le localStorage
     useEffect(() => {
-      const storedFavorites = localStorage.getItem('favorites')
+      const storedFavorites = localStorage.getItem('favorites');
       if (storedFavorites) {
-        setFavorites(JSON.parse(storedFavorites));
-
-        
-   
+        const parsedFavorites = JSON.parse(storedFavorites);
+        setFavorites(parsedFavorites);
+    
+        if (book?.id) {
+          const isAlreadyFavorite = parsedFavorites.some((fav: { id: any }) => fav?.id === book?.id);
+          setIsInFavorite(isAlreadyFavorite);
+    
+          if (isAlreadyFavorite) {
+            alert('Ce livre est déjà dans vos favoris.');
+          }
+        }
       }
-    }, []);
+    }, [book?.id]);
 
-       // Vérifier si le livre est déjà dans les favoris
-    const isAlreadyFavorite = favorites.some((fav) => fav?.id === book.id)
-    if (isAlreadyFavorite) {
-      setIsInFavorite(true);
-      alert('Ce livre est déjà dans vos favoris !')
-      return
-    }
+ 
+    console.log("favoriteisss",isInFavorite)
       // Ajouter aux favoris
   const addToFavorites = () => {
 
@@ -71,7 +73,7 @@ export default function BookPage({ params }: { params: Promise<{ id: string }> }
 
     let updatedFavorites = []
     if (isInFavorite) {
-      updatedFavorites = favorites.filter((fav) => fav?.id !== book.id)
+      updatedFavorites = favorites.filter((fav) => fav?.id !== book?.id)
       alert('Livre supprimé des favoris !')
       setIsInFavorite(false)
     } else {
@@ -86,11 +88,14 @@ export default function BookPage({ params }: { params: Promise<{ id: string }> }
 
   // Affichage conditionnel si le livre n'est pas encore chargé
   if (!book) {
-    return <div className="text-center text-gray-500">Chargement des informations du livre...</div>
+    return <div className="text-center text-gray-500">
+      <Image src={'/assets/loading/loading-1.gif'} alt={'loading'} width={250} height={250} className='mx-auto object-cover' />
+      <p>Chargement des informations du livre...</p>
+    </div>
   }
 
   // Vérification des champs optionnels dans les données du livre
-  const coverImage = book.volumeInfo?.imageLinks?.thumbnail || '/placeholder.jpg'
+  const coverImage = book.volumeInfo?.imageLinks?.thumbnail || '/assets/uknown1.png'
   const title = book.volumeInfo?.title || 'Titre indisponible'
   const author = book.volumeInfo?.authors?.join(', ') || 'Auteur inconnu'
   const description = book.volumeInfo?.description || 'Aucune description disponible'
@@ -132,12 +137,7 @@ export default function BookPage({ params }: { params: Promise<{ id: string }> }
       return stars
     }
 
-    // const handleAddFavorie =(...favorite: any)=>{
-
-    //   localStorage.setItem("favorie", JSON.stringify(favorite));
-    //   alert("bien ajouter en favorie");
-    // }
-
+    
   return (
 
     <div className="container mx-auto px-4 py-8 min-h-screen">

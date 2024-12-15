@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import SearchBar from '@/app/components/searchBar'
 import BookGallery from '@/app/components/bookGallery'
+import Image from 'next/image';
 
 
 export default function SearchPage() {
@@ -14,7 +15,7 @@ export default function SearchPage() {
     const handleSearch = async (query: string) => {
       const URL: string = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}`;
       try {
-        const response = await fetch(URL + query);
+        const response = await fetch(URL);
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -35,7 +36,10 @@ export default function SearchPage() {
         
         <BookGallery books={searchResults} />
       ) : (
-        <p className="text-center mt-8 text-gray-600">Aucun résultat. Essayez une nouvelle recherche !</p>
+        <div className="text-center mt-8 text-gray-600">
+          <Image src={'/assets/loading/loading-2.gif'} alt={'loading'} width={250} height={250} className=' object-cover mx-auto'/>
+          <p>Aucun résultat. Essayez une nouvelle recherche !</p>
+        </div>
       )}
     </div>
   )

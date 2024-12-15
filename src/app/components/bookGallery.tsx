@@ -22,7 +22,7 @@ export default function BookGallery({ books }: BookGalleryProps) {
             <div className="flex flex-col md:flex-row items-center">
               <div className="relative w-[10rem] md:w-[15rem] h-[15rem]">
                 <Image
-                  src={book.volumeInfo.imageLinks?.smallThumbnail || "/placeholder"}
+                  src={book.volumeInfo.imageLinks?.smallThumbnail || "/assets/uknown1.png"}
                   alt={book.volumeInfo.title}
                   layout="fill" 
                   objectFit="cover"
