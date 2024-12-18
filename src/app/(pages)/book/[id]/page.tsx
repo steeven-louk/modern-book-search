@@ -209,7 +209,7 @@ const parseDescription = (description: string) => {
               className={`flex items-center gap-2 ${isInFavorite === false? "bg-blue-500 hover:bg-blue-500":"bg-red-500 hover:bg-red-600"}  text-white font-bold py-2 px-4 rounded transition duration-300`}
             >
              {isInFavorite === false? <Bookmark size={20} /> : <BookmarkCheck size={20}/>} 
-             {isInFavorite === false? "Ajouter en Favorie" : "Supprimer des Favorie"} 
+             {isInFavorite === false? "Ajouter aux Favoris" : "Supprimer des Favorie"} 
             </button>
 
         </div>
